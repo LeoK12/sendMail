@@ -1,5 +1,5 @@
 this script uses mutt for sending mail.
-so there are serveral steps to install some app before it works on ubuntu
+so there are serveral steps to do before it works on ubuntu
 	1. install mutt and msmtp
 		sudo apt-get install mutt
 		sudo apt-get install msmtp
@@ -17,3 +17,4 @@ so there are serveral steps to install some app before it works on ubuntu
 		user YOUR_NAME
 		password ******
 		logfile ~/.msmtp.log
+	4. before using sendMail script, please read explaination at the beginning of the file. ENJOY IT.
