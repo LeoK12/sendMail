@@ -1,0 +1,45 @@
+#!/bin/bash
+######################################################################################
+# this shell script is used to send mail automatically
+# there are five arguments
+#		1. TargetName
+#		2. ccTargetName
+#		3. mailTitle
+#		4. mailContent
+#   5. mailContentFile
+#		6. attachFile
+######################################################################################
+TargetName=$1
+ccTargetName=$2
+mailTitle=$3
+mailContent=$4
+mailContentFile=$5
+attachFile=$6
+
+if [ -n "$ccTargetName" ]; then
+	cmd=${cmd}" -c $ccTargetName"
+fi
+
+if [ -n "$attachFile" ]; then
+	cmd=${cmd}" -a $attachFile"
+fi
+
+if [ -n "$mailContentFile" ]; then
+	cmd=${cmd}" < $mailContentFile"
+fi
+
+cmd=${cmd}" $TargetName"
+
+echo $cmd
+
+if [ -n "$mailContent" ]; then
+	echo $mailContent | mutt -s "$mailTitle" $cmd
+else
+	$cmd
+fi
+
+if [ $? -eq 0 ]; then
+	echo "send success!"
+else
+	echo "send failed!"
+fi
